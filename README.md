@@ -41,13 +41,13 @@ First, it gets rendered with Jinja to
       age
     FROM placeholder
 
-Then the SQL linter checks this file for syntax errors. (Postgres uses [sqlint](https://github.com/purcell/sqlint/tree/master/lib/sqlint).) This should catch
+Then the SQL linter checks this file for syntax errors. (Postgres uses [sqlint](https://github.com/purcell/sqlint/tree/master/lib/sqlint).) This catches all basic syntax errors.
 
 TODO
 ----
 
-[ ] Add more SQL dialects (Snowflake, Redshift, BigQuery)
-[ ] Add common lint hooks (vim, emacs, Sublime, Atom, PyCharm)
-[ ] Read from a file configuration rather than entirely from CLI flags
-[ ] Package so that it can be run from command-line after a `pip install dbtlint` 
-[ ] Add code grammar rules
+- [ ] Add more SQL dialects (Snowflake, Redshift, BigQuery)
+- [ ] Add common lint hooks (vim, emacs, Sublime, Atom, PyCharm)
+- [ ] Read from a file configuration rather than entirely from CLI flags
+- [ ] Package so that it can be run from command-line after a `pip install dbtlint` 
+- [ ] Add code grammar rules
