@@ -4,6 +4,7 @@ import sys
 
 import argparse
 
+import dbtlint.dialects.postgres
 import dbtlint.lint
 import dbtlint.exceptions
 
@@ -58,6 +59,12 @@ def main():
         help='File extension for dbt files to lint',
     )
     parser.add_argument(
+        '--sql-dialect',
+        choices=['postgres'],
+        default='postgres',
+        help='SQL dialect, to indicate which linter to use',
+    )
+    parser.add_argument(
         '--macros',
         action='append',
         default=None,
@@ -77,8 +84,13 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
         logging.debug("Verbose Logging Enabled")
 
+    sql_lint_map = dict(
+        postgres=dbtlint.dialects.postgres.lint,
+    )
+
     errors = dbtlint.lint.lint_files(
         file_paths=_parse_target(args.targets, args.dbt_file_extension),
+        sql_lint_fn=sql_lint_map[args.sql_dialect],
         macros=_parse_macros(args.macros),
     )
 
